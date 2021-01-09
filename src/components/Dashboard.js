@@ -1,12 +1,25 @@
 import NavBar from './NavBar';
+import React from 'react';
+import { getAllMeals } from '../middleware/mealRequests';
 
 function Dashboard () {
+    const [meals, setMeals] = React.useState([]);
+
+    const getMeals = async () => {
+        setMeals(await getAllMeals());
+    }
+
+    React.useEffect(() => {
+        getMeals();
+    }, [])
 
 
     return (
         <div >
             <NavBar />
-            <h1>should display list of all logged meals fetched from the db</h1>
+            <div className='meals-container'>
+
+            </div>
         </div>
     )
 }
