@@ -1,6 +1,7 @@
 import NavBar from './NavBar';
 import 'date-fns';
 import React from 'react';
+import { addMeal } from '../middleware/mealRequests';
 import { Button } from '@material-ui/core';
 import DateFnsUtils from '@date-io/date-fns';
 import {
@@ -30,17 +31,17 @@ function CreateMeal () {
         setDate(e);
     }
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
 
-        const meal = {
-            username: username,
+        const mealObject = {
+            username: 'kenza',
             description: description,
             type: type,
             date: date
         }
 
-        console.log(meal);
+        await addMeal(mealObject);
     }
 
     return (
@@ -103,7 +104,6 @@ function CreateMeal () {
                                 onChange={onChangeDescription}
                             />
                         </div>
-
                         <div className="create-btn-container">
                             <Button id='create-btn' variant='contained' onClick={onSubmit}>Create</Button>
                             <Button id='cancel-btn' variant='contained' onClick={onSubmit}>Cancel</Button>
