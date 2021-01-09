@@ -1,7 +1,6 @@
 import NavBar from './NavBar';
 import 'date-fns';
 import React from 'react';
-import { DialogContentText } from '@material-ui/core';
 import { Button } from '@material-ui/core';
 import DateFnsUtils from '@date-io/date-fns';
 import {
