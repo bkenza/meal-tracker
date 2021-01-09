@@ -34,6 +34,7 @@ html, body, main {
 }
 
 .main {
+  background: rgb(17, 17, 17);
   position: fixed;
   top: 0;
   left: 0;
@@ -157,4 +158,52 @@ html, body, main {
 
 /* --------------------------------------------------- */
 
+/* ----------------- NAVBAR ----------------- */
 
+.navbar-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  margin-top: .5rem;
+
+}
+
+#title {
+  font-family: 'Hanalei Fill', cursive;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 25%;
+  text-decoration: none;
+}
+
+.navbar-middle {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  flex: 50%;
+}
+
+#navbar-right {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex: 25%;
+  color: #fff;
+}
+
+#nav-link {
+  text-decoration: none;
+}
+
+.MuiButtonBase-root:hover {
+  color: #00b336;
+}
+
+.MuiButtonBase-root:focus {
+  color: #00b336;
+}
+
+/* --------------------------------------------------- */
