@@ -1,6 +1,13 @@
+import NavBar from './NavBar';
+
 function Dashboard () {
+
+
     return (
-        <div>Dashboard</div>
+        <div >
+            <NavBar />
+            <h1>should display list of all logged meals fetched from the db</h1>
+        </div>
     )
 }
 
