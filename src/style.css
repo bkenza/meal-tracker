@@ -321,7 +321,7 @@ main {
 .meals-container {
   margin: 3rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(258px, 1fr));
   justify-content: center;
   color: #fff;
   grid-gap: 10px 1rem;
@@ -341,4 +341,63 @@ main {
 
 .meal-info {
   padding: 2%;
+}
+
+#meal-type {
+  font-weight: bold;
+  text-align: center;
+  margin-top: .5rem;
+}
+
+.meal-details {
+  border-radius: 3px;
+  margin: 4px;
+  border: 1px solid #fff;
+  text-align: center;
+  background: -webkit-linear-gradient(top, #ebebeb, #d5d5d5);
+  color: #000;
+}
+
+#food-icon {
+  margin: 1rem;
+  font-size: 25px;
+  color: #000
+}
+
+.title-div {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 4px;
+}
+
+#edit-icon {
+  color: #fff;
+  font-size: 20px;
+  transform: rotate(-190deg);
+}
+
+.no-meals {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-meals > h1 {
+  margin: 2rem;
+  color: #fff;
+}
+
+.form-group-select {
+  width: 100px;
+  margin-bottom: 100px;
+}
+
+.form-group {
+  margin-top: 1rem;
 }

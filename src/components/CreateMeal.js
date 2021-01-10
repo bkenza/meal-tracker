@@ -8,16 +8,19 @@ import {
     MuiPickersUtilsProvider,
     KeyboardDatePicker,
 } from '@material-ui/pickers';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 function CreateMeal () {
+    const types = ['Breakfast', 'Lunch', 'Dinner', 'Snack'];
 
     const [username, setUsername] = React.useState(''); // add username from local storage
     const [description, setDescription] = React.useState('');
-    const [type, setType] = React.useState('Breakfast');
+    const [type, setType] = React.useState(types[0]);
     const [date, setDate] = React.useState(new Date());
 
     const users = ['test'];
-    const types = ['Breakfast', 'Lunch', 'Dinner', 'Snack'];
 
     const onChangeDescription = (e) => {
         setDescription(e.target.value);
@@ -61,22 +64,21 @@ function CreateMeal () {
                     </div>
 
                     <form className='create-meal-form' onSubmit={onSubmit}>
-                        <div className="form-group">
-                            <label>Type: </label>
-                            <br />
-                            <select
+                        <label>Type:</label>
+                        <br />
+                        <FormControl className="form-group-select">
+                            <Select
                                 required
+                                labelId="mood-select-label"
+                                id="type-select-label"
                                 value={type}
-                                onChange={onChangeType}>
-                                {types.map((type, index) =>
-                                (
-                                    <option key={index}
-                                        value={type}>
-                                        {type}
-                                    </option>
+                                onChange={onChangeType}
+                            >
+                                {types.map((item, index) => (
+                                    <MenuItem key={index} value={item}>{item}</MenuItem>
                                 ))}
-                            </select>
-                        </div>
+                            </Select>
+                        </FormControl>
                         <div className="form-group">
                             <label>Date: </label>
                             <br />
