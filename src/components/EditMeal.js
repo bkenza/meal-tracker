@@ -14,37 +14,27 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
 function Editmeal (props) {
+
+    const id = useParams();
     const types = ['Breakfast', 'Lunch', 'Dinner', 'Snack'];
     const [mealToEdit, setMealToEdit] = React.useState({});
     const [username, setUsername] = React.useState('');
     const [type, setType] = React.useState(types[0]);
-    const [description, setDescription] = React.useState('');
+    const [description, setDescription] = React.useState(mealToEdit.description);
     const [date, setDate] = React.useState(new Date());
-    const id = useParams();
+
+    const fetchMeal = async () => {
+        setMealToEdit(await getMealById(id));
+        setDescription(mealToEdit.description);
+
+    }
 
     React.useEffect(() => {
         fetchMeal();
     }, [])
 
-
-    const fetchMeal = async () => {
-        setMealToEdit(await getMealById(id));
-        setUsername(mealToEdit.username);
-        setType(mealToEdit.type);
-        setDescription(mealToEdit.description);
-        setDate(mealToEdit.date);
-    }
-
     const onChangeDescription = (e) => {
         setDescription(e.target.value);
-    }
-
-    const onChangeType = (e) => {
-        setType(e.target.value);
-    }
-
-    const onChangeDate = (e) => {
-        setDate(e);
     }
 
     const onSubmit = async (e) => {
@@ -54,8 +44,8 @@ function Editmeal (props) {
             id: id,
             username: 'kenza',
             description: description,
-            type: type,
-            date: date
+            type: mealToEdit.type,
+            date: mealToEdit.date
         }
         await editMeal(mealObject);
     }
@@ -70,7 +60,8 @@ function Editmeal (props) {
                 <NavBar />
                 <div>
                     <div className='create-meal-title-container'>
-                        <h3 id='create-meal-title'>Edit Meal Log</h3>
+                        <h3 id='create-meal-title'>Edit Meal Log: </h3>
+                        <h4 id='create-meal-title'>{mealToEdit.description}</h4>
                     </div>
                     <div className='dashboard-container'>
                         <div className='dashboard-content-container'>
@@ -82,16 +73,16 @@ function Editmeal (props) {
                                 </div>
                             </div>
 
-                            <form className='create-meal-form'>
+                            <form className='create-meal-form' onSubmit={onSubmit}>
                                 <label>Type:</label>
                                 <br />
                                 <FormControl className="form-group-select">
                                     <Select
+                                        disabled
                                         required
                                         labelId="mood-select-label"
                                         id="type-select-label"
-                                        value={type ? type : types[0]}
-                                        onChange={onChangeType}
+                                        defaultValue={mealToEdit.type ? mealToEdit.type : types[0]}
                                     >
                                         {types.map((item, index) => (
                                             <MenuItem key={index} value={item}>{item}</MenuItem>
@@ -104,12 +95,12 @@ function Editmeal (props) {
                                     <br />
                                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
                                         <KeyboardDatePicker
+                                            value={mealToEdit.date}
+                                            disabled
                                             disableToolbar
                                             variant="inline"
                                             format="MM/dd/yyyy"
                                             id="date-picker-inline"
-                                            value={date}
-                                            onChange={onChangeDate}
                                             KeyboardButtonProps={{
                                                 'aria-label': 'change date',
                                             }}
