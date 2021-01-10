@@ -5,6 +5,7 @@ import Home from './components/Home';
 import Dashboard from './components/Dashboard';
 import CreateMeal from './components/CreateMeal';
 import EditMeal from './components/EditMeal';
+import NotFoundPage from './components/NotFoundPage';
 
 function App () {
   return (
@@ -15,6 +16,7 @@ function App () {
           <Route path='/dashboard' component={Dashboard} exact />
           <Route path='/create-meal' component={CreateMeal} exact />
           <Route path='/edit-meal/:id' component={EditMeal} />
+          <Route component={NotFoundPage} />
         </Switch>
       </div>
     </Router>
