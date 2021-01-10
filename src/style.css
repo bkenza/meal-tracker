@@ -401,3 +401,41 @@ main {
 .form-group {
   margin-top: 1rem;
 }
+
+#success-message {
+  color: greenyellow;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+#error-message {
+  color: rgb(245, 100, 100);
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.display-error-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#ugh {
+  width: 700px;
+  font-family: 'Hanalei Fill', cursive;
+  font-size: 25vh;
+  font-weight: bold;
+  color: greenyellow;
+  text-align: center;
+}
+
+.display-error {
+  border: 2px solid greenyellow;
+  border-radius: 5px;
+  padding: 25px;
+  margin-bottom: 1.5rem;
+  color: #fff;
+}

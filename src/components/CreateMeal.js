@@ -12,15 +12,16 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
-function CreateMeal () {
+function CreateMeal (props) {
     const types = ['Breakfast', 'Lunch', 'Dinner', 'Snack'];
 
     const [username, setUsername] = React.useState(''); // add username from local storage
     const [description, setDescription] = React.useState('');
     const [type, setType] = React.useState(types[0]);
     const [date, setDate] = React.useState(new Date());
+    const [success, setSuccess] = React.useState(false);
+    const [error, setError] = React.useState(false);
 
-    const users = ['test'];
 
     const onChangeDescription = (e) => {
         setDescription(e.target.value);
@@ -44,7 +45,19 @@ function CreateMeal () {
             date: date
         }
 
-        await addMeal(mealObject);
+        let response = await addMeal(mealObject);
+        if (response) {
+            setSuccess(true);
+            setError(false);
+        }
+        else {
+            setSuccess(false);
+            setError(true);
+        }
+    }
+
+    const onClickCancel = () => {
+        props.history.push('/dashboard');
     }
 
     return (
@@ -53,6 +66,8 @@ function CreateMeal () {
             <div className='create-meal-title-container'>
                 <h3 id='create-meal-title'>Create New Meal Log</h3>
             </div>
+            {success && <p id='success-message'>Your meal log has been updated successfully!</p>}
+            {error && <p id='error-message'>An error occurred. Please try again later!</p>}
             <div className='dashboard-container'>
                 <div className='dashboard-content-container'>
                     <div className='title-bar'>
@@ -108,7 +123,7 @@ function CreateMeal () {
                         </div>
                         <div className="create-btn-container">
                             <Button id='create-btn' variant='contained' onClick={onSubmit}>Create</Button>
-                            <Button id='cancel-btn' variant='contained' onClick={onSubmit}>Cancel</Button>
+                            <Button id='cancel-btn' variant='contained' onClick={onClickCancel}>Cancel</Button>
                         </div>
                     </form>
 

@@ -19,14 +19,15 @@ function Editmeal (props) {
     const types = ['Breakfast', 'Lunch', 'Dinner', 'Snack'];
     const [mealToEdit, setMealToEdit] = React.useState({});
     const [username, setUsername] = React.useState('');
-    const [type, setType] = React.useState(types[0]);
-    const [description, setDescription] = React.useState(mealToEdit.description);
-    const [date, setDate] = React.useState(new Date());
+    const [description, setDescription] = React.useState();
+    const [success, setSuccess] = React.useState(false);
+    const [error, setError] = React.useState(false);
 
     const fetchMeal = async () => {
         setMealToEdit(await getMealById(id));
-        setDescription(mealToEdit.description);
-
+        if (mealToEdit) {
+            setDescription(mealToEdit.description);
+        }
     }
 
     React.useEffect(() => {
@@ -47,14 +48,22 @@ function Editmeal (props) {
             type: mealToEdit.type,
             date: mealToEdit.date
         }
-        await editMeal(mealObject);
+        let response = await editMeal(mealObject);
+        if (response) {
+            setSuccess(true);
+            setError(false);
+        }
+        else {
+            setError(true);
+            setSuccess(false);
+        }
     }
 
     const onClickCancel = () => {
         props.history.push('/dashboard');
     }
 
-    if (Object.keys(mealToEdit).length > 2) {
+    if (mealToEdit && Object.keys(mealToEdit).length > 2) {
         return (
             <div>
                 <NavBar />
@@ -63,7 +72,10 @@ function Editmeal (props) {
                         <h3 id='create-meal-title'>Edit Meal Log: </h3>
                         <h4 id='create-meal-title'>{mealToEdit.description}</h4>
                     </div>
+                    {success && <p id='success-message'>Your meal log has been updated successfully!</p>}
+                    {error && <p id='error-message'>An error occurred. Please try again later</p>}
                     <div className='dashboard-container'>
+
                         <div className='dashboard-content-container'>
                             <div className='title-bar'>
                                 <div className='title-bar-btns'>
@@ -131,7 +143,11 @@ function Editmeal (props) {
     }
     else {
         return (
-            <div>oops</div>
+            <div className='display-error-container'>
+                <p id='ugh'>UGH!</p>
+                <div className='display-error'>Sorry, something went wrong. Please try again later!</div>
+                <Button size='large' id='get-started-btn' variant='contained' onClick={onClickCancel}>Go Back</Button>
+            </div>
         )
     }
 
