@@ -1,7 +1,8 @@
 import axios from 'axios';
 
-export const getAllMeals = async () => {
-    const GET_MEALS_ENDPOINT = 'http://localhost:5000/meals'
+export const getAllMeals = async (username) => {
+    console.log(username);
+    const GET_MEALS_ENDPOINT = `http://localhost:5000/meals/${username}`
     try {
         let response = await axios.get(GET_MEALS_ENDPOINT);
         if (response.status === 200) {
@@ -15,7 +16,6 @@ export const getAllMeals = async () => {
 }
 
 export const getMealById = async (id) => {
-    console.log(id.id);
     const GET_MEAL_BY_ID_ENDPOINT = `http://localhost:5000/meals/${id.id}`;
 
     try {

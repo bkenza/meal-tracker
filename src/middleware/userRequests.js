@@ -22,7 +22,6 @@ export const login = async (user) => {
         if (response.status === 200 && response.data.success) {
             localStorage.setItem('username', user.username);
             localStorage.setItem('token', response.data.token);
-            console.log(response);
             return response.data;
         }
     }

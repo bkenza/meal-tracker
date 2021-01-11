@@ -8,9 +8,10 @@ import { Link } from 'react-router-dom';
 
 function Dashboard (props) {
     const [meals, setMeals] = React.useState([]);
+    const userLoggedIn = localStorage.getItem('username');
 
     const getMeals = async () => {
-        setMeals(await getAllMeals());
+        setMeals(await getAllMeals(userLoggedIn));
     }
 
     const handleClick = () => {
@@ -29,7 +30,6 @@ function Dashboard (props) {
                     <h1>My meals</h1>
                 </div>
                 <div className='meals-container'>
-
                     {meals.map((meal, index) => (
                         <div key={index} className='meal-card'>
                             <div className='title-bar'>

@@ -51,7 +51,6 @@ router.route('/:id').delete((req, res) => {
 router.post("/login", (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
-    console.log(username)
 
     // Find user by email
     User.findOne({ username }).then(user => {
@@ -62,7 +61,6 @@ router.post("/login", (req, res) => {
 
         // Check password
         bcrypt.compare(password, user.password).then(isMatch => {
-            console.log(isMatch);
             if (isMatch) {
                 // User matched
                 // Create JWT Payload
@@ -85,7 +83,6 @@ router.post("/login", (req, res) => {
                             success: true,
                             token: "Bearer " + token
                         });
-                        console.log(token);
                     }
                 );
             } else {
