@@ -7,7 +7,7 @@ import InstagramIcon from '@material-ui/icons/Instagram';
 function Home (props) {
 
     const handleClick = () => {
-        props.history.push('/dashboard')
+        props.history.push('/login-register')
     }
 
     return (
