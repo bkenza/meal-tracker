@@ -18,10 +18,10 @@ function Editmeal (props) {
     const id = useParams();
     const types = ['Breakfast', 'Lunch', 'Dinner', 'Snack'];
     const [mealToEdit, setMealToEdit] = React.useState({});
-    const [username, setUsername] = React.useState('');
     const [description, setDescription] = React.useState();
     const [success, setSuccess] = React.useState(false);
     const [error, setError] = React.useState(false);
+    console.log(localStorage.getItem('username'));
 
     const fetchMeal = async () => {
         setMealToEdit(await getMealById(id));
@@ -43,7 +43,7 @@ function Editmeal (props) {
 
         const mealObject = {
             id: id,
-            username: 'kenza',
+            username: localStorage.getItem('username'),
             description: description,
             type: mealToEdit.type,
             date: mealToEdit.date

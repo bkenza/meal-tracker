@@ -1,6 +1,13 @@
+import { logout } from '../middleware/userRequests';
 import { Button } from '@material-ui/core';
+import { withRouter } from 'react-router-dom';
 
-function NavBar () {
+function NavBar (props) {
+
+    const onClick = () => {
+        logout();
+        props.history.push('/');
+    }
 
     return (
         <div className='navbar-container'>
@@ -10,10 +17,10 @@ function NavBar () {
                 <Button href='/create-meal' color="inherit" className="nav-link" >Create meal log</Button>
                 <Button href='my-account' color="inherit" className="nav-link" >My account</Button>
             </div>
-            <Button id='navbar-right'>Logout</Button>
+            <Button id='navbar-right' onClick={onClick}>Logout</Button>
         </div >
 
     )
 }
 
-export default NavBar;
+export default withRouter(NavBar);

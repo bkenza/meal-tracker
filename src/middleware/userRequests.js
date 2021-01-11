@@ -31,3 +31,8 @@ export const login = async (user) => {
         console.log(e);
     }
 }
+
+export const logout = () => {
+    localStorage.removeItem('username');
+    localStorage.removeItem('token');
+}

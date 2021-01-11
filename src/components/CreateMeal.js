@@ -13,16 +13,13 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
 function CreateMeal (props) {
-    const types = ['Breakfast', 'Lunch', 'Dinner', 'Snack'];
 
-    // TODO: add username from local storage
-    const [username, setUsername] = React.useState('');
+    const types = ['Breakfast', 'Lunch', 'Dinner', 'Snack'];
     const [description, setDescription] = React.useState('');
     const [type, setType] = React.useState(types[0]);
     const [date, setDate] = React.useState(new Date());
     const [success, setSuccess] = React.useState(false);
     const [error, setError] = React.useState(false);
-
 
     const onChangeDescription = (e) => {
         setDescription(e.target.value);
@@ -40,7 +37,7 @@ function CreateMeal (props) {
         e.preventDefault();
 
         const mealObject = {
-            username: 'kenza',
+            username: localStorage.getItem('username'),
             description: description,
             type: type,
             date: date
