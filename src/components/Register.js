@@ -1,8 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import login from '../images/login.svg';
 import { Button } from '@material-ui/core';
+import { register } from '../middleware/userRequests'
 
 function Register () {
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const onChangeUsername = (e) => {
+        setUsername(e.target.value)
+    }
+
+    const onChangeEmail = (e) => {
+        setEmail(e.target.value);
+    }
+
+    const onChangePassword = (e) => {
+        setPassword(e.target.value);
+    }
+
+    const registerUser = async () => {
+        let userInfo = {
+            username,
+            email,
+            password
+        }
+
+        let response = await register(userInfo);
+        console.log(response);
+    }
 
     return (
         <div className='login-base-container' >
@@ -15,21 +42,21 @@ function Register () {
                 <div className='login-form'>
                     <div className='login-form-group'>
                         <label htmlFor="username">Username</label>
-                        <input type="text" name="username" placeholder="username" />
+                        <input type="text" name="username" value={username} onChange={onChangeUsername} placeholder="username" />
                     </div>
                     <div className='login-form-group'>
                         <label htmlFor="email">Email</label>
-                        <input type="email" name="email" placeholder="email" />
+                        <input type="email" name="email" value={email} onChange={onChangeEmail} placeholder="email" />
                     </div>
                     <div className="login-form-group">
                         <label htmlFor="password">Password</label>
-                        <input type="password" name="password" placeholder="password" />
+                        <input type="password" name="password" value={password} onChange={onChangePassword} placeholder="password" />
                     </div>
 
                 </div>
             </div>
             <div className="login-form-footer">
-                <Button size='large' id='get-started-btn' variant='contained'>Register</Button>
+                <Button size='large' id='get-started-btn' variant='contained' onClick={registerUser}>Register</Button>
 
             </div>
 
