@@ -11,6 +11,8 @@ const mealSchema = new Schema({
     timestamps: true,
 });
 
+mealSchema.index({ username: 'text' });
+
 const Meal = mongoose.model('Meal', mealSchema);
 
 module.exports = Meal;

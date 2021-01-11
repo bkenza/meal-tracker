@@ -4,7 +4,11 @@ let Meal = require('../models/meal.model');
 // Get all meals
 router.route('/:username').get((req, res) => {
     const username = req.params.username
-    Meal.find({ 'username': username })
+    Meal.find({
+        $text: {
+            $search: username
+        }
+    })
         .then(meals => res.json(meals))
         .catch(err => res.status(400).json('Error: ' + err));
 });
