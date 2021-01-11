@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import login from '../images/login.svg';
+import loginImg from '../images/loginImg.svg';
 import { Button } from '@material-ui/core';
 import { register } from '../middleware/userRequests'
 
@@ -36,7 +36,7 @@ function Register () {
             <div className='login-header'>Register</div>
             <div className='login-content'>
                 <div className='login-img'>
-                    <img src={login} alt='img' />
+                    <img src={loginImg} alt='img' />
 
                 </div>
                 <div className='login-form'>

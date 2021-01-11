@@ -13,3 +13,21 @@ export const register = (user) => {
         console.log(e);
     }
 }
+
+export const login = async (user) => {
+    console.log(user)
+    let LOGIN_ENDOPOINT = 'http://localhost:5000/users/login';
+    try {
+        let response = await axios.post(LOGIN_ENDOPOINT, user);
+        if (response.status === 200 && response.data.success) {
+            localStorage.setItem('username', user.username);
+            localStorage.setItem('token', response.data.token);
+            console.log(response);
+            return response.data;
+        }
+    }
+    catch (e) {
+        console.log('Login error');
+        console.log(e);
+    }
+}

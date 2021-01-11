@@ -12,7 +12,6 @@ router.route('/').get((req, res) => {
 
 router.route('/add').post((req, res) => {
 
-
     User.findOne({ email: req.body.email }).then(user => {
         if (user) {
             return res.status(400).json('Error: email already exists.')
@@ -49,48 +48,53 @@ router.route('/:id').delete((req, res) => {
 });
 
 
-// router.post("/login", (req, res) => {
-//     const email = req.body.email;
-//     const password = req.body.password;
+router.post("/login", (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+    console.log(username)
 
-//     // Find user by email
-//     User.findOne({ email }).then(user => {
-//         // Check if user exists
-//         if (!user) {
-//             return res.status(404).json('Error: Email not found');
-//         }
+    // Find user by email
+    User.findOne({ username }).then(user => {
+        // Check if user exists
+        if (!user) {
+            return res.status(404).json('Error: Username not found');
+        }
 
-//         // Check password
-//         bcrypt.compare(password, user.password).then(isMatch => {
-//             if (isMatch) {
-//                 // User matched
-//                 // Create JWT Payload
-//                 const payload = {
-//                     id: user.id,
-//                     name: user.name
-//                 };
+        // Check password
+        bcrypt.compare(password, user.password).then(isMatch => {
+            console.log(isMatch);
+            if (isMatch) {
+                // User matched
+                // Create JWT Payload
+                const payload = {
+                    id: user._id,
+                    username: user.username
+                };
 
-//                 // Sign token
-//                 jwt.sign(
-//                     payload,
-//                     keys.secretOrKey,
-//                     {
-//                         expiresIn: 31556926 // 1 year in seconds
-//                     },
-//                     (err, token) => {
-//                         res.json({
-//                             success: true,
-//                             token: "Bearer " + token
-//                         });
-//                     }
-//                 );
-//             } else {
-//                 return res
-//                     .status(400)
-//                     .json({ passwordincorrect: "Password incorrect" });
-//             }
-//         });
-//     });
-// });
+                const secret = process.env.REACT_APP_PRIVATE_KEY;
+
+                // Sign token
+                jwt.sign(
+                    payload,
+                    secret,
+                    {
+                        expiresIn: 31556926 // 1 year in seconds
+                    },
+                    (err, token) => {
+                        res.json({
+                            success: true,
+                            token: "Bearer " + token
+                        });
+                        console.log(token);
+                    }
+                );
+            } else {
+                return res
+                    .status(400)
+                    .json({ passwordincorrect: "Password incorrect" });
+            }
+        });
+    })
+});
 
 module.exports = router;
