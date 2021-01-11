@@ -25,20 +25,15 @@ function LoginRegisterContainer () {
         setIsLoginForm(!isLoginForm);
     }
 
-
     return (
         <div className="login-register-main-container">
             <div className="login">
                 <div className="container">
                     {isLoginForm && (
-                        // <Login containerRef={(ref) => rightSideRef.current = ref} />
                         <Login />
-
                     )}
                     {!isLoginForm && (
-                        // <Register containerRef={(ref) => rightSideRef.current = ref} />
                         <Register />
-
                     )}
                 </div>
                 <RightSide
