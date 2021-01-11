@@ -14,7 +14,7 @@ function Login (props) {
             <div className='login-header'>Login</div>
             <div className='login-content'>
                 <div className='login-img'>
-                    <img src={login} />
+                    <img src={login} alt='img' />
 
                 </div>
                 <div className='login-form'>

@@ -36,7 +36,7 @@ function Register () {
             <div className='login-header'>Register</div>
             <div className='login-content'>
                 <div className='login-img'>
-                    <img src={login} />
+                    <img src={login} alt='img' />
 
                 </div>
                 <div className='login-form'>

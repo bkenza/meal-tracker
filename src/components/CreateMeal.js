@@ -15,7 +15,8 @@ import Select from '@material-ui/core/Select';
 function CreateMeal (props) {
     const types = ['Breakfast', 'Lunch', 'Dinner', 'Snack'];
 
-    const [username, setUsername] = React.useState(''); // add username from local storage
+    // TODO: add username from local storage
+    const [username, setUsername] = React.useState('');
     const [description, setDescription] = React.useState('');
     const [type, setType] = React.useState(types[0]);
     const [date, setDate] = React.useState(new Date());
