@@ -1,5 +1,19 @@
 import axios from 'axios';
 
+export const getTotalMeals = async () => {
+    const GET_MEALS_ENDPOINT = `http://localhost:5000/meals`
+    try {
+        let response = await axios.get(GET_MEALS_ENDPOINT);
+        if (response.status === 200) {
+            return response.data;
+        }
+    }
+    catch (e) {
+        console.log('Error fetching meals.');
+        console.log(e);
+    }
+}
+
 export const getAllMeals = async (username) => {
     console.log(username);
     const GET_MEALS_ENDPOINT = `http://localhost:5000/meals/${username}`
@@ -16,10 +30,12 @@ export const getAllMeals = async (username) => {
 }
 
 export const getMealById = async (id) => {
+    console.log('middleware');
+    console.log(id);
     const GET_MEAL_BY_ID_ENDPOINT = `http://localhost:5000/meals/${id.id}`;
 
     try {
-        let response = await axios.get(GET_MEAL_BY_ID_ENDPOINT);
+        let response = await axios.post(GET_MEAL_BY_ID_ENDPOINT);
         if (response.status === 200) {
             return response.data;
         }

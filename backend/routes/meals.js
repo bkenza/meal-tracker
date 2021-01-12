@@ -1,7 +1,14 @@
 const router = require('express').Router();
 let Meal = require('../models/meal.model');
 
-// Get all meals
+// get all meals in the db
+router.route('/').get((req, res) => {
+    Meal.find()
+        .then(meals => res.json(meals))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
+// Get all meals for the current user
 router.route('/:username').get((req, res) => {
     const username = req.params.username;
     Meal.find({
@@ -14,10 +21,23 @@ router.route('/:username').get((req, res) => {
 });
 
 // Get meal by id
-router.route('/:id').get((req, res) => {
+router.route('/:id').post((req, res) => {
     Meal.findById(req.params.id)
         .then(meal => res.json(meal))
         .catch(err => res.status(400).json('Error: ' + err))
+});
+
+// Get meal by id
+router.route('/:id').get((req, res) => {
+    const id = req.params.id;
+    console.log(id);
+    Meal.find({
+        $text: {
+            $search: id
+        }
+    })
+        .then(meals => res.json(meals))
+        .catch(err => res.status(400).json('Error: ' + err));
 });
 
 // Add new meal
