@@ -22,7 +22,7 @@ function Dashboard (props) {
         getMeals();
     }, [])
 
-    if (meals) {
+    if (meals.length) {
         return (
             <div >
                 <NavBar />

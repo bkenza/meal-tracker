@@ -3,7 +3,7 @@ let Meal = require('../models/meal.model');
 
 // Get all meals
 router.route('/:username').get((req, res) => {
-    const username = req.params.username
+    const username = req.params.username;
     Meal.find({
         $text: {
             $search: username
