@@ -6,7 +6,7 @@ const NotFoundPage = () => {
     return (
         <div >
             <NavBar />
-            <p id='not-found'>Page not found. Go to <Link to="/dashboard">Home Page</Link></p>
+            <p id='not-found'>Page not found. Go to <Link to="/">Home Page</Link></p>
         </div>
     );
 };
