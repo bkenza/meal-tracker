@@ -15,7 +15,6 @@ export const register = (user) => {
 }
 
 export const login = async (user) => {
-    console.log(user)
     let LOGIN_ENDOPOINT = 'http://localhost:5000/users/login';
     try {
         let response = await axios.post(LOGIN_ENDOPOINT, user);
