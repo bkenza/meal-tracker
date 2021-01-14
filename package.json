@@ -25,7 +25,8 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start-fe": "react-scripts start",
+    "start": "concurrently --kill-others-on-fail \"yarn server\" \"yarn start\"",
     "server": "cd backend && nodemon server.js",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn start\"",
     "heroku-postbuild": "yarn && yarn build",
