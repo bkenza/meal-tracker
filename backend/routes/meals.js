@@ -30,7 +30,6 @@ router.route('/:id').post((req, res) => {
 // Get meal by id
 router.route('/:id').get((req, res) => {
     const id = req.params.id;
-    console.log(id);
     Meal.find({
         $text: {
             $search: id
